@@ -18,7 +18,7 @@ function [x, y, z, R] = pincherFK(jointAngles)
     a2 = 103; 
     a3 = 102; 
     a4 = 71;
-    d1 = 141;
+    d1 = 0;
 
     % 3. DH Transformation Template
     % Using the 'Standard DH' matrix.
