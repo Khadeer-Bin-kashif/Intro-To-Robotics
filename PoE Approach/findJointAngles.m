@@ -42,6 +42,11 @@ function thetas = findJointAngles(x, y, z, phi)
         denominator = 2 * L2 * L3;
         D = (r_bar^2 + z_bar^2 - L2^2 - L3^2) / denominator;
         
+        % FIX: Add tolerance for floating-point errors when arm is fully extended
+        if abs(D) > 1 && abs(D) <= 1.001 
+            D = sign(D) * 1; % Force D to be exactly 1 or -1
+        end
+        
         % Workspace bounds check: Skip if target is out of physical reach
         if abs(D) <= 1
             % Two possible elbow configurations: Up and Down
