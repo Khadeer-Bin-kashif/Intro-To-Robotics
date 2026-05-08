@@ -6,7 +6,7 @@ function optimalSolution = findSolution(x, y, z, phi, fullConfig)
  
     % 1. Get all possible analytical IK solutions
     % Assumes findJointAngles returns an N x 4 matrix
-    all_solutions = findJointAngles(x, y, z, phi)
+    all_solutions = findJointAngles(x, y, z, phi);
     
     valid_solutions = [];
     costs = [];
@@ -20,15 +20,15 @@ function optimalSolution = findSolution(x, y, z, phi, fullConfig)
         
         % Check 1: Joint Limits [-150 deg, 150 deg]
         if ~checkJointLimits(q_sol)
-            fprintf('Solution %d rejected: Joint Limits exceeded.\n', i);
-            fprintf('Angles (deg): %s\n', num2str(rad2deg(q_sol)));
+            %fprintf('Solution %d rejected: Joint Limits exceeded.\n', i);
+            %fprintf('Angles (deg): %s\n', num2str(rad2deg(q_sol)));
             continue;
         end
         
         % Check 2: Collision-Free Path
         % Uses the function we wrote previously
         if checkSelfCollision(currentConfig, q_sol)
-            fprintf('Solution %d rejected: Collision detected along path.\n', i);
+            %fprintf('Solution %d rejected: Collision detected along path.\n', i);
             continue;
         end
         

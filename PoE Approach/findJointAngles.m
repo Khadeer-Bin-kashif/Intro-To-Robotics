@@ -11,6 +11,10 @@ function thetas = findJointAngles(x, y, z, phi)
     L3 = 102.38;
     L4 = 76.91;
     
+    % L1 = 141;
+    % L2 = 103;
+    % L3 = 102;
+    % L4 = 71;
     % Initialize an empty array to store the valid N x 4 solutions
     thetas = [];
     
@@ -21,7 +25,7 @@ function thetas = findJointAngles(x, y, z, phi)
         theta1_sols = 0; 
     else
         % Two possible base rotations: pointing towards target or away from it
-        theta1_sols = [atan2(y, x), atan2(-y, -x)];
+        theta1_sols = [atan2(y, x), atan2(-y, -x)]
     end
     
     % --- STEP 2: Isolate the Wrist Position ---
