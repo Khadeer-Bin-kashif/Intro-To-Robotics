@@ -1,11 +1,10 @@
 function optimalSolution = findSolution(x, y, z, phi, fullConfig)
     % Robot model for collision checking
-    currentConfig = fullConfig(1:4);
-   % persistent robot
     
- 
+    currentConfig = fullConfig(1:4);
+
+    
     % 1. Get all possible analytical IK solutions
-    % Assumes findJointAngles returns an N x 4 matrix
     all_solutions = findJointAngles(x, y, z, phi);
     
     valid_solutions = [];
@@ -17,33 +16,27 @@ function optimalSolution = findSolution(x, y, z, phi, fullConfig)
     for i = 1:size(all_solutions, 1)
         q_sol = all_solutions(i, :);
  
+        % ---------------------------------------------------------
+        % CRITICAL FIX: Wrap angles to [-pi, pi] BEFORE doing anything else!
+        % This forces 246 degrees to become -113 degrees BEFORE the limit check.
+        % ---------------------------------------------------------
+        q_sol = mod(q_sol + pi, 2*pi) - pi;
         
         % Check 1: Joint Limits [-150 deg, 150 deg]
         if ~checkJointLimits(q_sol)
-            %fprintf('Solution %d rejected: Joint Limits exceeded.\n', i);
-            %fprintf('Angles (deg): %s\n', num2str(rad2deg(q_sol)));
             continue;
         end
         
-        % Check 2: Collision-Free Path
-        % Uses the function we wrote previously
-        if checkSelfCollision(currentConfig, q_sol)
-            %fprintf('Solution %d rejected: Collision detected along path.\n', i);
-            continue;
-        end
+        % % Check 2: Collision-Free Path
+        % if checkSelfCollision(currentConfig, q_sol)
+        %     continue;
+        % end
         
         % SOLUTION IS VALID - Calculate Cost
         valid_solutions = [valid_solutions; q_sol];
         
-        % --- Shortest Path Logic per Task 6.5 ---
-        % Manual Step 1: Rewrite angles in [-pi, pi] BEFORE computing difference
-        q_sol_wrapped = mod(q_sol + pi, 2*pi) - pi;
         current_wrapped = mod(currentConfig + pi, 2*pi) - pi;
-        
-        % Manual Step 2: Compute difference
-        diff = q_sol_wrapped - current_wrapped;
-        
-    
+        diff = q_sol - current_wrapped;
         shortest_diff = mod(diff + pi, 2*pi) - pi;
         
         current_cost = sum(b .* abs(shortest_diff));

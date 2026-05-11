@@ -233,13 +233,15 @@ function perception_pipeline_3d_regionprops()
     S = hsvI(:,:,2); 
     V = hsvI(:,:,3);
 
-    % STRICTER COLOR THRESHOLDS
+    % BLUE COLOR THRESHOLDS
     % Slightly widened Hue, but much stricter Saturation and Value (Brightness)
     hueMask = (H > 0.52) & (H < 0.65); 
     % Ensure Saturation is at least 40% (graythresh sometimes dips too low on dull backgrounds)
     level = max(graythresh(S), 0.40); 
     % RAISED VALUE THRESHOLD: 0.25 rejects dark shadows and black plastic
     mask = hueMask & (S > level) & (V > 0.25); 
+
+    % GREEN COLOR THRESHOLDS
 
     % Clean up the mask (remove noise, fill holes)
     mask = bwareaopen(mask, 100); 
