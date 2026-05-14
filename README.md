@@ -14,6 +14,7 @@ https://github.com/user-attachments/assets/fac1602e-1be8-4883-a8cb-f2a384e5335b
 ## 🌍 World & Camera Frames
 
 The image below identifies the robot's base (world) frame alongside the camera frames used for the perception pipeline.
+
 <img width="509" height="585" alt="PHOTO-2026-05-07-17-36-25" src="https://github.com/user-attachments/assets/0aa71fc7-47d2-49ae-97e5-20b1df4ad4e7" />
 
 
