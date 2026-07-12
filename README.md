@@ -1,4 +1,22 @@
-# Intro to Robotics: Robotic Manipulator Kinematics & Perception
+# Autonomous Pick-and-Place with the PhantomX Pincher Arm
+
+### EE/CE-366L: Introduction to Robotics Lab — Spring 2026
+**Institution:** Habib University, Karachi, Pakistan  
+**Instructor:** Dr. Basit Memon  
+
+## 👥 Authors & Contributions
+*   **Mohammad Khadeer Bin Kashif** — Kinematics modeling, analytical IK implementation, perception pipeline integration, and state machine design.
+*   **Mubashir Baig** — Hardware setup, sensor calibration, perception testing, and task verification.
+
+---
+
+## ⚠️ Academic Integrity & Plagiarism Disclaimer
+This repository contains the final project report, MATLAB Live Scripts, and source code for the Introduction to Robotics course (EE/CE-366L) at Habib University. This material is shared strictly for portfolio and educational demonstration purposes only.
+
+**For current or future students of Habib University (or any other institution):**  
+Submitting any portion of this code, data, or report text for academic credit constitutes a direct violation of academic integrity policies. Anti-plagiarism software (such as MOSS or Turnitin) easily detects logic structural copies and text rewrites. Please use this repository to understand the logic, not to copy the work.
+
+## Robotic Manipulator Kinematics & Perception
 
 This repository contains the implementation of kinematics, perception, and path-planning algorithms for a robotic manipulator (Pincher). The core implementation and all related tasks are located in the **`PoE Approach`** directory, which uses the Product of Exponentials formula for modeling the robot's kinematics. 
 
